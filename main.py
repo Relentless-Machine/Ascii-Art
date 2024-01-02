@@ -96,19 +96,15 @@ class ImageToASCIIConverter:
             img = img.resize((int(img_width * 0.75), int(img_height * 0.5)), Image.NEAREST)
             img_gray = np.array(img.convert('L'), 'f')
 
-            text = []
-            char_width = 6
-            char_height = 12
-
+            text = " "
             for i in range(int(img_height * 0.5)):
-                line = ""
                 for j in range(int(img_width * 0.75)):
-                    line += get_char(img_gray[i, j]) * char_width
-                text.extend([line] * char_height)
+                    text = text + get_char(img_gray[i, j])
+                text = text + '\n'
 
             text_name = "ascii_art.txt"
             with open(text_name, "w") as f:
-                f.write('\n'.join(text))
+                f.write(text)
 
             self.info_label.config(text=f"ASCII art saved to {text_name}")
             print(f"ASCII art saved to {text_name}")
