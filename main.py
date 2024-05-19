@@ -28,7 +28,8 @@ class BlessingWindow(tk.Toplevel):
             random_blessing = random.choice(blessings)
             self.blessing_label.config(text=random_blessing)
 
-    def read_blessings_from_file(self):
+    @staticmethod
+    def read_blessings_from_file():
         try:
             with open("gift.new", "r", encoding="utf-16be") as file:
                 blessings = [line.strip() for line in file.readlines()]
@@ -145,7 +146,8 @@ class ImageToASCIIConverter:
 
         self.blessing_window = BlessingWindow(self.master)
 
-    def ascii_to_image(self, ascii_text):
+    @staticmethod
+    def ascii_to_image(ascii_text):
         char_width = 6
         char_height = 12
         font_size = 12
